@@ -1,0 +1,24 @@
+*{
+    padding : 0;
+    margin : 0;
+    box-sizing: border-box;
+}
+html,body {
+    width: 100%;
+    height: 100%;
+}
+h1,h2,h3,h4,h5,h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+input, textarea, select, button{
+    color : inherit;
+    font : inherit;
+}
+[type="text"],[type="button"],[type="submit"]{
+    border: 0;
+    background-color:transparent;
+}
+button{
+    cursor: pointer;
+}
