@@ -9,8 +9,8 @@
 export default {
     props : ['todo'],
     methods : {
-        deleteTodo : function(){
-            this.$emit('delete',this.todo);
+        deleteTodo() {
+            this.$emit('delete', this.todo);
         }
     }
 }

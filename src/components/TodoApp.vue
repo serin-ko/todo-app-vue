@@ -8,7 +8,7 @@
           </form>
       </div>
       <div class="container">
-          <todo-item v-for="todo in todos" v-bind:key="todo" v-bind:todo="todo" v-on:delete="deleteTodo" />
+          <todo-item v-for="todo in todos" v-bind:key="todo.text" v-bind:todo="todo" v-on:delete="deleteTodo" />
           
       </div>
       <div class="footer">
@@ -20,45 +20,40 @@
 <script>
 import TodoItem from "./TodoItem.vue";
 export default {
-    data: function () {
+    data() {
         return {
-          text : '',
-          todos : JSON.parse(localStorage.getItem('todos')) || [],
+          text: '',
+          todos: JSON.parse(localStorage.getItem('todos')) || [],
         }
     },
-    watch : {
-        todos : function (){
+    watch: {
+        todos() {
             localStorage.setItem('todos', JSON.stringify(this.todos));
         }
     },
-    components : {
-        'todo-item' : TodoItem
+    components: {
+        TodoItem,
     },
-    computed : {
-        remainTodo : function(){
-            return this.todos.filter(function(todo){
-                return !todo.complete;
-            });
+    computed: {
+        remainTodo() {
+            return this.todos.filter((todo) => !todo.complete);
         }
     },
-    methods : {
-        addTodo : function(){
-            if(this.text != ''){
-                this.todos.push({
-                text : this.text,
-                complete : false,
-            });
-            this.text = "";
-            this.$refs.text.focus();    
+    methods: {
+        addTodo() {
+            if (this.text != '') {
+              this.todos.push({
+                text: this.text,
+                complete: false,
+              });
+              this.text = "";
+              this.$refs.text.focus();    
             }
-            
         },
-        deleteTodo : function(targetTodo){
-            this.todos = this.todos.filter(function(todo){
-                return targetTodo !== todo;
-            });
+        deleteTodo(targetTodo) {
+            this.todos = this.todos.filter((todo) => targetTodo !== todo);
         },
-        dsa : function(){
+        dsa() {
             this.todos = this.remainTodo;
         }
     }
